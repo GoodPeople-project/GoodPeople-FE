@@ -1,4 +1,4 @@
-import QueryProviders from "@/external/tanstack-query";
+import QueryProviders from '@/external/tanstack-query';
 
 export default function RootLayout({
   children,
@@ -6,11 +6,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html >
+    <html>
       <body>
-      <QueryProviders>
-        {children}
-      </QueryProviders>
+        <QueryProviders>{children}</QueryProviders>
       </body>
     </html>
   );
