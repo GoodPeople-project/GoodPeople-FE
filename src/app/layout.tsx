@@ -1,4 +1,8 @@
 import QueryProviders from '@/external/tanstack-query';
+import '@/styles/global.css.ts';
+import { container } from './_css/main-container.css';
+import { Header } from '@/components/layout/header/header';
+import { Footer } from '@/components/layout/footer/footer';
 
 export default function RootLayout({
   children,
@@ -7,8 +11,12 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body>
-        <QueryProviders>{children}</QueryProviders>
+      <body className={container}>
+        <QueryProviders>
+          <Header />
+          {children}
+          <Footer />
+        </QueryProviders>
       </body>
     </html>
   );
