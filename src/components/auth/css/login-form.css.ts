@@ -50,10 +50,25 @@ export const inputWrapper = style({
   marginTop: '18px',
 });
 
-export const lable = style({
+export const labelWrapper = style({
+  display: 'flex',
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+});
+
+export const label = style({
   fontSize: '14px',
   fontWeight: 500,
   lineHeight: '14px',
+});
+
+export const error = style({
+  margin: 0,
+  fontSize: '14px',
+  fontWeight: 500,
+  lineHeight: '14px',
+  color: 'red',
 });
 
 export const input = style({

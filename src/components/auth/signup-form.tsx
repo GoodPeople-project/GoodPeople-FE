@@ -2,6 +2,13 @@
 
 import { useForm } from 'react-hook-form';
 import * as style from './css/signup-form.css';
+import { Signup } from '@/service/auth';
+
+interface SignupFormData {
+  email: string;
+  password: string;
+  nickname: string;
+}
 
 export function SignupForm() {
   const {
@@ -11,8 +18,16 @@ export function SignupForm() {
     formState: { errors }, // errors: register의 에러 메세지 자동 출력
   } = useForm();
 
+  const onSubmit = async (data: SignupFormData) => {
+    try {
+      await Signup(data.email, data.password, data.nickname);
+    } catch (error) {
+      console.error('로그인 실패:', error);
+    }
+  };
+
   return (
-    <div className={style.container}>
+    <form className={style.container}>
       <div className={style.wrapper}>
         <div className={style.large}>회원가입</div>
         <div className={style.small}>굿피플의 서비스를 이용하기 위한 계정을 만드세요</div>
@@ -46,6 +61,6 @@ export function SignupForm() {
           <div className={style.highlight}>로그인</div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
