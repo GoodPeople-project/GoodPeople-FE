@@ -3,6 +3,10 @@
 import { useForm } from 'react-hook-form';
 import * as style from './css/login-form.css';
 import { Login } from '@/service/auth';
+import { useRouter } from 'next/navigation';
+import { useMutation } from '@tanstack/react-query';
+import { useAuthStore } from '@/store/auth';
+import { LoginResponse } from '@/types/auth';
 
 interface LoginFormData {
   email: string;
@@ -10,23 +14,56 @@ interface LoginFormData {
 }
 
 export function LoginForm() {
+  const router = useRouter();
   const {
-    handleSubmit, // form onSubmit에 들어가는 함수
-    register, // onChange 등의 이벤트 객체 생성
-    watch, // register를 통해 받은 모든 값 확인
-    formState: { errors, isSubmitting }, // errors: register의 에러 메세지 자동 출력
+    handleSubmit,
+    register,
+    formState: { errors },
   } = useForm<LoginFormData>();
+  const { token, setToken } = useAuthStore();
 
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      await Login(data.email, data.password);
-    } catch (error) {
+  const mutation = useMutation({
+    mutationFn: (data: LoginFormData) => Login(data.email, data.password),
+    onSuccess: (data: LoginResponse) => {
+      setToken(data.result.access_token, data.result.expires_in);
+      console.log(token);
+      setTimeout(() => {
+        router.push('/');
+      }, 500);
+    },
+    onError: (error: Error) => {
+      alert('로그인에 실패하였습니다. 다시 시도해주세요.');
       console.error('로그인 실패:', error);
+    },
+  });
+
+  const handleLogin = async (data: LoginFormData) => {
+    mutation.mutate(data);
+  };
+
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+
+  const handleSocialLogin = async (provider: string) => {
+    try {
+      router.push(`${API_BASE_URL}/oauth2/authorization/${provider}`);
+    } catch (error) {
+      alert('로그인에 실패하였습니다. 다시 시도해주세요.');
+      console.error('로그인 실패', error);
     }
   };
 
+  if (mutation.isPending) {
+    return (
+      <div className={style.overlay}>
+        <div className={style.spinner}>
+          <div className={style.spinnerInner}></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <form className={style.container} onSubmit={handleSubmit(onSubmit)}>
+    <form className={style.container} onSubmit={handleSubmit(handleLogin)}>
       <div className={style.wrapper}>
         <div className={style.large}>로그인</div>
         <div className={style.small}>계정에 로그인하여 굿피플 서비스를 이용하세요</div>
@@ -75,13 +112,28 @@ export function LoginForm() {
           <span className={style.small}>또는</span>
           <div className={style.line}></div>
         </div>
-        <button type="button" className={style.loginButton.google}>
+        <button
+          type="button"
+          className={style.loginButton.google}
+          onClick={() => handleSocialLogin('google')}
+        >
+          <img src="/icons/google.svg" className={style.icons} />
           Google 계정으로 로그인
         </button>
-        <button type="button" className={style.loginButton.kakao}>
+        <button
+          type="button"
+          className={style.loginButton.kakao}
+          onClick={() => handleSocialLogin('kakao')}
+        >
+          <img src="/icons/kakao.svg" className={style.icons} />
           카카오 계정으로 로그인
         </button>
-        <button type="button" className={style.loginButton.naver}>
+        <button
+          type="button"
+          className={style.loginButton.naver}
+          onClick={() => handleSocialLogin('naver')}
+        >
+          <img src="/icons/naver.svg" />
           네이버 계정으로 로그인
         </button>
         <div className={style.textWrapper}>

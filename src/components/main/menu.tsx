@@ -1,14 +1,10 @@
 import * as style from './css/menu.css';
 
 const Items = [
-  { title: '사례 분석', icon: 'analyze' },
-  { title: '공유 커뮤니티', icon: 'community' },
-  { title: '응답 통계', icon: 'statistics' },
-  { title: '양식 작성', icon: 'mode' },
-  { title: '사례 분석', icon: 'analyze' },
-  { title: '공유 커뮤니티', icon: 'community' },
-  { title: '응답 통계', icon: 'statistics' },
-  { title: '양식 작성', icon: 'mode' },
+  { title: '사례 분석', icon: '📊' },
+  { title: '공유 커뮤니티', icon: '👥' },
+  { title: '변호사 찾기', icon: '📚' },
+  { title: '양식 작성', icon: '📝' },
 ];
 
 export function Menu() {
@@ -18,7 +14,8 @@ export function Menu() {
       <div className={style.itemWrapper}>
         {Items.map((item, index) => (
           <div key={index} className={style.menuItem}>
-            <img className={style.img} src={`/icons/${item.icon}.svg`} /> {item.title}
+            <div className={style.icon}>{item.icon}</div>
+            {item.title}
           </div>
         ))}
       </div>

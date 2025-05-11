@@ -21,7 +21,7 @@ export const title = style({
 
 export const itemWrapper = style({
   width: '928px',
-  height: '224px',
+  height: 'auto',
   gap: '16px',
   display: 'flex',
   flexWrap: 'wrap',
@@ -45,7 +45,10 @@ export const menuItem = style({
   gap: '12px',
 });
 
-export const img = style({
+export const icon = style({
   width: '36px',
   height: '40px',
+  fontSize: '36px',
+  fontWeight: 350,
+  lineHeight: '40px',
 });

@@ -47,10 +47,6 @@ globalStyle('img', {
   imageRendering: 'crisp-edges',
 });
 
-globalStyle('textarea:not([rows])', {
-  minHeight: '10em',
-});
-
 globalStyle(':target', {
   scrollMarginBlock: '5ex',
 });

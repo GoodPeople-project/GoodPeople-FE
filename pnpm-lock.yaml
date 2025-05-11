@@ -14,6 +14,9 @@ importers:
       '@tanstack/react-query-next-experimental':
         specifier: ^5.72.1
         version: 5.72.1(@tanstack/react-query@5.72.1(react@19.1.0))(next@15.2.5(@babel/core@7.26.10)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@use-funnel/browser':
+        specifier: ^0.0.14
+        version: 0.0.14(react@19.1.0)
       '@vanilla-extract/css':
         specifier: ^1.17.1
         version: 1.17.1
@@ -1303,6 +1306,16 @@ packages:
     resolution: {integrity: sha512-hVXaObGI2lGFmrtT77KSbPQ3I+zk9IU500wobjk0+oX59vg/0VqAzABNtt3YSQYgXTC2a/LYxekLfND/wlt0yQ==}
     cpu: [x64]
     os: [win32]
+
+  '@use-funnel/browser@0.0.14':
+    resolution: {integrity: sha512-1aSj/F+yRCwDEcWG9JWVkXLSqio8UiLm4NMQMRLwpRT5GXuwY6/4SiP6DaDtABa1DGVOW8dbFcH1q2hfzByvlw==}
+    peerDependencies:
+      react: '>=16.8'
+
+  '@use-funnel/core@0.0.11':
+    resolution: {integrity: sha512-a0T4mWXeL+ouMXtmyZn8MbrPZd9JgvFP9iAGAiaiuCvU3tj1jEWCvRjWfLVup3otH/3BBpf4zyi/v28/eLR9PQ==}
+    peerDependencies:
+      react: '>=16.8'
 
   '@vanilla-extract/babel-plugin-debug-ids@1.2.0':
     resolution: {integrity: sha512-z5nx2QBnOhvmlmBKeRX5sPVLz437wV30u+GJL+Hzj1rGiJYVNvgIIlzUpRNjVQ0MgAgiQIqIUbqPnmMc6HmDlQ==}
@@ -4218,6 +4231,15 @@ snapshots:
 
   '@unrs/resolver-binding-win32-x64-msvc@1.4.1':
     optional: true
+
+  '@use-funnel/browser@0.0.14(react@19.1.0)':
+    dependencies:
+      '@use-funnel/core': 0.0.11(react@19.1.0)
+      react: 19.1.0
+
+  '@use-funnel/core@0.0.11(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
 
   '@vanilla-extract/babel-plugin-debug-ids@1.2.0':
     dependencies:
