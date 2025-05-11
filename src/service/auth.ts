@@ -26,7 +26,7 @@ export async function Login(username: string, password: string) {
 
 export async function Signup(username: string, password: string, nickname: string) {
   try {
-    const response = await fetch(`${URL}/api/auth/signup`, {
+    const response = await fetch(`${URL}/api/user`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
