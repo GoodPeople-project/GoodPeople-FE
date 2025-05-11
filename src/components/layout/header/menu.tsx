@@ -2,10 +2,10 @@ import Link from 'next/link';
 import * as style from './css/menu.css';
 
 const MenuItems = [
-  { title: '사례분석', url: '분석' },
-  { title: '공유 커뮤니티', url: '공유 커뮤니티' },
-  { title: '변호사 찾기', url: '변호사 찾기' },
-  { title: '법률 양식', url: '법률 양식' },
+  { title: '사례분석', url: '/analysis' },
+  { title: '공유 커뮤니티', url: '/community' },
+  { title: '변호사 찾기', url: '/' },
+  { title: '법률 양식', url: '/' },
 ];
 
 export function Menu() {
