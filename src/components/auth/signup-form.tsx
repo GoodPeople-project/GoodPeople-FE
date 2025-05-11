@@ -198,7 +198,6 @@ export function SignupForm() {
                 message: '이메일 형식이 올바르지 않습니다',
               },
             })}
-            disabled={isEmailVerified}
           />
           <div className={style.errorContainer}>
             {errors.email && <div className={style.error}>{errors.email.message}</div>}
@@ -220,9 +219,15 @@ export function SignupForm() {
           <input
             className={style.input}
             placeholder="인증번호를 입력해주세요"
-            {...register('emailVerificationCode')}
+            {...register('emailVerificationCode', {
+              required: { value: true, message: '인증번호를 입력해주세요' },
+            })}
           />
-          <div className={style.errorContainer}></div>
+          <div className={style.errorContainer}>
+            {errors.emailVerificationCode && (
+              <div className={style.error}>{errors.emailVerificationCode.message}</div>
+            )}
+          </div>
         </div>
 
         {/* 비밀번호 필드 */}
