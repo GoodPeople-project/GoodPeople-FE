@@ -109,7 +109,6 @@ export function AnalysisFunnel() {
     mutationFn: (data: AnanlysisFormData) => postAnalysis(data.content, data.token),
     onSuccess: (data: AnalysisResultResponse) => {
       setResult(data.result);
-      console.log(data.result);
       setTimeout(() => {
         router.push('/analysis/result');
       }, 500);
