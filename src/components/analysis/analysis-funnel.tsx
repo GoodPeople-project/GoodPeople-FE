@@ -109,7 +109,14 @@ export function AnalysisFunnel() {
   const mutation = useMutation({
     mutationFn: (data: AnanlysisFormData) => postAnalysis(data.content, data.token),
     onSuccess: (data: AnalysisResultResponse) => {
-      setResult(data.result);
+      const arr = data.result.keyword.split(',').map(item => item.trim());
+
+      const resultWithArrayKeyword = {
+        ...data.result,
+        keyword: arr,
+      };
+
+      setResult(resultWithArrayKeyword);
       setTimeout(() => {
         router.push('/analysis/result');
       }, 500);

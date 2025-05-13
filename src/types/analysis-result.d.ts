@@ -16,7 +16,7 @@ export interface OtherCaseData {
 export interface ResultData {
   myCase: string;
   mainCase: CaseData;
-  keyword: string[];
+  keyword: string;
   aiPredict: string;
   otherCases: OtherCaseData[];
 }
