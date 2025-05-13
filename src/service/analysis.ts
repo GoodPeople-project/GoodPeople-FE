@@ -1,6 +1,6 @@
 const URL = process.env.NEXT_PUBLIC_API_URL;
 
-export async function postAnalysis(script: string, token: string) {
+export async function postAnalysis(content: string, token: string) {
   try {
     const response = await fetch(`${URL}/api/script/similarity`, {
       method: 'POST',
@@ -9,7 +9,7 @@ export async function postAnalysis(script: string, token: string) {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        script,
+        content,
       }),
     });
 
