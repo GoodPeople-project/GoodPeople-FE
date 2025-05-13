@@ -15,7 +15,7 @@ export function AnalysisResults() {
       <div className={style.title}>사례 분석 결과</div>
       <div className={style.small}>입력하신 사례와 가장 유사한 판례를 분석한 결과입니다</div>
       <MyCase myCase={myCase} />
-      <CoscoreKeyword keyword={keyword} score={mainCase.cosScore} />
+      <CoscoreKeyword keyword={keyword} score={mainCase.score} />
       <MainCase mainCase={mainCase} />
       <OtherCase otherCase={otherCases} />
       <AiPredict aiPredict={aiPredict} />

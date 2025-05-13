@@ -3,7 +3,7 @@ import * as style from './css/other-case.css';
 interface otherCase {
   case: string;
   caseNo: string;
-  cosScore: number;
+  score: number;
   judgementResult: string;
 }
 
@@ -27,7 +27,7 @@ export function OtherCase({ otherCase }: otherCaseProps) {
             <div className={style.wrapper} key={index}>
               <div className={style.caseNo}>{item.caseNo}</div>
               <div className={style.content}>{item.case}</div>
-              <div className={style.score}>{item.cosScore}</div>
+              <div className={style.score}>{item.score}</div>
               <div className={style.result}>{item.judgementResult}</div>
             </div>
           ))}

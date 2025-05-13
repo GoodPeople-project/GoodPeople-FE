@@ -3,7 +3,7 @@ import * as style from './css/main-case.css';
 interface MainCaseInterface {
   case: string;
   caseNo: string;
-  cosScore: number;
+  score: number;
   judgementResult: string;
   judgementReason?: string;
 }

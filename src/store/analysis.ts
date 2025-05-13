@@ -3,7 +3,7 @@ import { create } from 'zustand';
 type Case = {
   case: string;
   caseNo: string;
-  cosScore: number;
+  score: number;
   judgementResult: string;
   judgementReason?: string;
 };
@@ -28,7 +28,7 @@ export const useAnalysisStore = create<AnalysisState>()(set => ({
   mainCase: {
     case: '',
     caseNo: '',
-    cosScore: 0,
+    score: 0,
     judgementResult: '',
     judgementReason: '',
   },

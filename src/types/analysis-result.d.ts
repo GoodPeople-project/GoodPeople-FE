@@ -1,7 +1,7 @@
 export interface CaseData {
   case: string;
   caseNo: string;
-  cosScore: number;
+  score: number;
   judgementResult: string;
   judgementReason?: string;
 }
@@ -9,7 +9,7 @@ export interface CaseData {
 export interface OtherCaseData {
   case: string;
   caseNo: string;
-  cosScore: number;
+  score: number;
   judgementResult: string;
 }
 
