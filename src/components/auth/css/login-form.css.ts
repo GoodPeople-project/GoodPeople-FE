@@ -1,4 +1,4 @@
-import { style, styleVariants, keyframes } from '@vanilla-extract/css';
+import { style, styleVariants } from '@vanilla-extract/css';
 
 export const container = style({
   width: '1408px',
