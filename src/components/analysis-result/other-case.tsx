@@ -11,6 +11,14 @@ interface otherCaseProps {
   otherCase: otherCase[];
 }
 
+type ResultKey = 'win' | 'lose' | 'partial';
+
+const resultKeyMap: Record<string, ResultKey> = {
+  승소: 'win',
+  패소: 'lose',
+  '일부 승소': 'partial',
+};
+
 export function OtherCase({ otherCase }: otherCaseProps) {
   return (
     <div>
@@ -23,14 +31,22 @@ export function OtherCase({ otherCase }: otherCaseProps) {
           <div className={style.col.result}>결과</div>
         </div>
         <div className={style.contentContainer}>
-          {otherCase.map((item, index) => (
-            <div className={style.wrapper} key={index}>
-              <div className={style.caseNo}>{item.caseNo}</div>
-              <div className={style.content}>{item.case}</div>
-              <div className={style.score}>{item.score}</div>
-              <div className={style.result}>{item.judgementResult}</div>
-            </div>
-          ))}
+          {otherCase.map((item, index) => {
+            const resultKey = resultKeyMap[item.judgementResult];
+
+            return (
+              <div className={style.wrapper} key={index}>
+                <div className={style.caseNo}>{item.caseNo}</div>
+                <div className={style.content}>{item.case}</div>
+                <div className={style.score}>{item.score}%</div>
+                <div
+                  className={`${style.result} ${resultKey ? style.resultVariants[resultKey] : ''}`}
+                >
+                  {item.judgementResult}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

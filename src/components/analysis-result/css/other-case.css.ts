@@ -156,12 +156,25 @@ export const result = style({
 
   padding: '4px 8px',
   borderRadius: '9999px',
-  background: '#DCFCE7',
 
   fontSize: '14px',
   fontWeight: 700,
-  color: '#166534',
   flexWrap: 'wrap',
   wordBreak: 'break-word',
   whiteSpace: 'pre',
+});
+
+export const resultVariants = styleVariants({
+  win: {
+    background: '#DCFCE7',
+    color: '#166534',
+  },
+  lose: {
+    background: '#FEE2E2',
+    color: '#991B1B',
+  },
+  partial: {
+    background: '#FEF9C3',
+    color: '#92400E',
+  },
 });

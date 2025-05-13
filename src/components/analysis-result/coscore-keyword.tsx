@@ -12,7 +12,7 @@ export function CoscoreKeyword({ keyword, score }: CoscoreKeyworInterface) {
           <div className={style.title}>유사도</div>
         </div>
         <div className={style.contentWrapper.score}>
-          <div className={style.score}>{score}</div>
+          <div className={style.score}>{score}%</div>
           <div>
             <div className={style.small}>가장 유사한 판례와의 일치도</div>
             <div className={style.progress} />
