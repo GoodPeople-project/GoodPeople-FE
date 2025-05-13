@@ -25,6 +25,7 @@ import { useAuthStore } from '@/store/auth';
 import { AnalysisResultResponse } from '@/types/analysis-result';
 import { useAnalysisStore } from '@/store/analysis';
 import { useRouter } from 'next/navigation';
+import { Loading } from '../skeleton/loding';
 
 interface AnanlysisFormData {
   content: string;
@@ -167,6 +168,10 @@ export function AnalysisFunnel() {
       }
     }
   };
+
+  if (mutation.isPending) {
+    return <Loading />;
+  }
 
   return (
     <>

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useAuthStore } from '@/store/auth';
 import { LoginResponse } from '@/types/auth';
+import { Loading } from '../skeleton/loding';
 
 interface LoginFormData {
   email: string;
@@ -53,13 +54,7 @@ export function LoginForm() {
   };
 
   if (mutation.isPending) {
-    return (
-      <div className={style.overlay}>
-        <div className={style.spinner}>
-          <div className={style.spinnerInner}></div>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
