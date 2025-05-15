@@ -29,3 +29,52 @@ export const useAuthStore = create<AuthState>()(
     },
   ),
 );
+
+type UserState = {
+  type: string;
+  cat: string;
+  user: {
+    username: string;
+    userId: number;
+    role: 'ROLE_USER' | 'ROLE_USER_SUBSCRIBED';
+    loginType: 'FORM' | 'GOOGLE' | 'KAKAO' | 'NAVER';
+  };
+  iat: number;
+  exp: number;
+  setUserInfo: (userInfo: UserState) => void;
+  clearUserInfo: () => void;
+};
+
+export const useUserStore = create<UserState>()(
+  persist(
+    set => ({
+      type: '',
+      cat: '',
+      user: {
+        username: '',
+        userId: 0,
+        role: 'ROLE_USER',
+        loginType: 'FORM',
+      },
+      iat: 0,
+      exp: 0,
+
+      // 사용자 정보 설정
+      setUserInfo: (userInfo: UserState) => set({ ...userInfo }),
+
+      // 사용자 정보 초기화
+      clearUserInfo: () =>
+        set({
+          type: '',
+          cat: '',
+          user: { username: '', userId: 0, role: 'ROLE_USER', loginType: 'FORM' },
+          iat: 0,
+          exp: 0,
+        }),
+    }),
+    {
+      name: 'user-session',
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+);

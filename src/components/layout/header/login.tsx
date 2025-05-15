@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import * as style from './css/login.css';
-import { useAuthStore } from '@/store/auth';
+import { useAuthStore, useUserStore } from '@/store/auth';
 import { useIsLoggedIn } from '@/hooks/isLoggedIn';
 import { useEffect, useState } from 'react';
 
 export function Login() {
   const [mounted, setMounted] = useState(false);
   const { clearAuth } = useAuthStore();
+  const { clearUserInfo } = useUserStore();
   const isLogIn = useIsLoggedIn();
 
   useEffect(() => {
@@ -21,7 +22,14 @@ export function Login() {
     <div className={style.container}>
       {isLogIn ? (
         <>
-          <Link href={'/'} className={style.loginBtn} onClick={() => clearAuth()}>
+          <Link
+            href={'/'}
+            className={style.loginBtn}
+            onClick={() => {
+              clearAuth();
+              clearUserInfo();
+            }}
+          >
             로그아웃
           </Link>
           <Link href={'/mypage'} className={style.SignupBtn}>

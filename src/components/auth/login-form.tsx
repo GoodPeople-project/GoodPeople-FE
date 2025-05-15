@@ -5,9 +5,10 @@ import * as style from './css/login-form.css';
 import { Login } from '@/service/auth';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { useAuthStore } from '@/store/auth';
+import { useAuthStore, useUserStore } from '@/store/auth';
 import { LoginResponse } from '@/types/auth';
 import { Loading } from '../skeleton/loding';
+import base64 from 'base-64';
 
 interface LoginFormData {
   email: string;
@@ -21,13 +22,15 @@ export function LoginForm() {
     register,
     formState: { errors },
   } = useForm<LoginFormData>();
-  const { token, setToken } = useAuthStore();
+  const { setToken } = useAuthStore();
+  const { setUserInfo } = useUserStore();
 
   const mutation = useMutation({
     mutationFn: (data: LoginFormData) => Login(data.email, data.password),
     onSuccess: (data: LoginResponse) => {
       setToken(data.result.access_token, data.result.expires_in);
-      console.log(token);
+      const decode = JSON.parse(base64.decode(data.result.access_token.split('.')[1]));
+      setUserInfo(decode);
       setTimeout(() => {
         router.push('/');
       }, 500);
