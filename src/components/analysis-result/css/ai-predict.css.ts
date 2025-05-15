@@ -49,7 +49,6 @@ export const content = style({
   fontSize: '16px',
   fontWeight: 500,
   color: '#374151',
-  filter: 'blur(4px)',
 });
 
 export const payButton = style({
@@ -79,4 +78,9 @@ export const payButton = style({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
+});
+
+export const blur = style({
+  filter: 'blur(4px)',
+  transition: 'filter 0.3s ease',
 });
